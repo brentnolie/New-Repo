@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install python, pip and java
+    package:
+     name:
+       - "{{ python_package }}"
+       - "{{ pip_package }}"
+       - "{{ openjdk11_package }}"
+     state: latest
+     update_cache: yes
+
+  - name: Banner Motd
+    debug:
+     msg: "Ansible Managed node by Argente"
+
+  - name: Create a User 
+    ansible.builtin.user:
+     name: Brent
+
